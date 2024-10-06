@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Model Example</title>
+    <style>
+       body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-start;
+    margin: 10px;
+}
+
+.box {
+    width: 100px;
+    height: 150px;
+    background-color: #eeeef2;
+    margin-right: 10px;
+    border-left: 10px dotted #D0D0FF;
+    display: flex;
+    justify-content: flex-start; /* Вирівнює текст по горизонталі ліворуч */
+    align-items: flex-start; /* Вирівнює текст по вертикалі вгорі */
+    font-size: 40px;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-top: 5px; /* Відступ зверху для тексту */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.box:hover {
+    background-color: yellow;
+    color: goldenrod;
+}
+
+.fixed {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+#F {
+    width: 100px;
+    height: 150px;
+}
+        </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box" id="A">A</div>
+        <div class="box" id="B">B</div>
+        <div class="box" id="C">C</div>
+        <div class="box" id="D">D</div>
+        <div class="box" id="E">E</div>
+        <div class="box fixed" id="F">F</div>
+    </div>
+</body>
+</html>
