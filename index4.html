@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Три бокси в рядок</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex; /* Вирівнювання блоків в один рядок */
+            justify-content: center; /* Центрування блоків */
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            margin: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative; /* Відносне позиціонування */
+            top: 200px;
+        }
+
+        .box1 {
+            
+            background-color: lightcyan;
+            left:200px;
+        }
+
+        .box2 {
+            background-color: lightgreen;
+            left:200px;
+        }
+
+        .box3 {
+            
+            background-color: lightcoral;
+            right: 400px;
+        }
+
+        h1 {
+            font-size: 24px;
+            
+        }
+
+        p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="box box1">
+        <div>
+            <h1>#1</h1>
+            <p>I'm YourName.<br>I love coding.</p>
+        </div>
+    </div>
+    <div class="box box2">
+        <div>
+            <h1>#2</h1>
+            
+        </div>
+    </div>
+    <div class="box box3">
+        <div>
+            <h1>#3</h1>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
