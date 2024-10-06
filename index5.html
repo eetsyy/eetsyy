@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Абсолютне позиціонування</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .box1 {
+            background-color: lightcyan;
+            
+            top: 300px;
+            left: 300px;
+        }
+        .box1 p{
+            margin-left:10px;
+        }
+
+        .box2 {
+            
+            background-color: lightgreen;
+            top: 100px;
+            left: 100px;
+        }
+
+        .box3 {
+            
+            background-color: lightcoral;
+            top: -100px;
+            left: -100px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="box box1">#1
+        <p>I'm YourName.<br>I love coding.</p>
+    </div>
+    <div class="box box2">#2</div>
+    <div class="box box3">#3</div>
+</div>
+
+</body>
+</html>
