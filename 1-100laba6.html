@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Послідовність 100 до 1</title>
+</head>
+<body>
+    <h1>Послідовність від 100 до 1 з умовами</h1>
+    <script>
+        function sequence_if_else() {
+            for (let i = 100; i >= 1; i--) {
+                if (i % 3 === 0 && i % 5 === 0) {
+                    console.log("NameSurname");
+                } else if (i % 3 === 0) {
+                    console.log("Name");
+                } else if (i % 5 === 0) {
+                    console.log("Surname");
+                } else {
+                    console.log(i);
+                }
+            }
+        }
+
+        // Виклик функції
+        sequence_if_else();
+    </script>
+</body>
+</html>
