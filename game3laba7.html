@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Game</title>
+    <style>
+     body {
+    background-color: #81c784;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+}
+
+h1 {
+    color: #ff4081;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 300px;
+}
+
+.btn {
+    width: 120px;
+    height: 120px;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.green {
+    background-color: green;
+}
+
+.pressed {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+    transform: scale(0.9);
+}
+    </style>
+</head>
+<body>
+
+    <h1 id="level-title">Натисніть будь-яку клавішу для початку</h1>
+
+    <div class="container">
+        <div class="btn red"></div>
+        <div class="btn blue"></div>
+        <div class="btn yellow"></div>
+        <div class="btn green"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Масив, що зберігає послідовність гри
+var gamePattern = [];
+var userClickedPattern = [];
+var buttonColors = ["red", "blue", "yellow", "green"];
+var level = 0;
+var started = false;
+
+// Початок гри після натискання будь-якої клавіші
+$(document).keydown(function() {
+    if (!started) {
+        $("#level-title").text("Рівень " + level);
+        nextSequence();
+        started = true;
+    }
+});
+
+// Обробка кліків на кольорові кнопки
+$(".btn").click(function() {
+    var userChosenColor = $(this).attr("class").split(' ')[1];
+    userClickedPattern.push(userChosenColor);
+    playSound(userChosenColor);
+    animatePress(userChosenColor);
+    checkAnswer(userClickedPattern.length - 1);
+});
+
+// Функція для перевірки відповіді користувача
+function checkAnswer(currentLevel) {
+    if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
+        if (userClickedPattern.length === gamePattern.length) {
+            setTimeout(function() {
+                nextSequence();
+            }, 1000);
+        }
+    } else {
+        playSound("wrong");
+        $("body").addClass("game-over");
+        $("#level-title").text("Гра закінчена, натисніть будь-яку клавішу, щоб почати знову.");
+
+        setTimeout(function() {
+            $("body").removeClass("game-over");
+        }, 200);
+
+        startOver();
+    }
+}
+
+// Функція для генерації наступної послідовності
+function nextSequence() {
+    userClickedPattern = [];
+    level++;
+    $("#level-title").text("Рівень " + level);
+
+    var randomNumber = Math.floor(Math.random() * 4);
+    var randomChosenColor = buttonColors[randomNumber];
+    gamePattern.push(randomChosenColor);
+
+    $("." + randomChosenColor).fadeIn(100).fadeOut(100).fadeIn(100);
+    playSound(randomChosenColor);
+}
+
+// Функція для відтворення звуків
+function playSound(name) {
+    var audio = new Audio("sounds/" + name + ".mp3");
+    audio.play();
+}
+
+// Функція для анімації натискань
+function animatePress(currentColor) {
+    $("." + currentColor).addClass("pressed");
+    setTimeout(function() {
+        $("." + currentColor).removeClass("pressed");
+    }, 100);
+}
+
+// Функція для перезапуску гри
+function startOver() {
+    level = 0;
+    gamePattern = [];
+    started = false;
+}
+    </script>
+</body>
+</html>
