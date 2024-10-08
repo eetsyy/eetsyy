@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гра з гральними кубиками</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .dice-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 20px;
+        }
+
+        .dice {
+            width: 100px;
+            height: 100px;
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 5px;
+        }
+
+        .dot {
+            width: 20px;
+            height: 20px;
+            background-color: black;
+            border-radius: 50%;
+            place-self: center;
+        }
+
+        .result {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Гра з гральними кубиками</h1>
+
+    <div class="dice-container">
+        <div>
+            <p>Гравець 1</p>
+            <div id="dice1" class="dice"></div>
+        </div>
+        <div>
+            <p>Гравець 2</p>
+            <div id="dice2" class="dice"></div>
+        </div>
+    </div>
+
+    <div class="result" id="result">Результат гри</div>
+
+    <script>
+        // Функція для створення точок на кубику
+        function createDots(number) {
+            const dice = document.createElement('div');
+            dice.classList.add('dice');
+            const dotPositions = [
+                [], // 0 dots, not used
+                [4], // 1 dot in the center
+                [0, 8], // 2 dots in opposite corners
+                [0, 4, 8], // 3 dots
+                [0, 2, 6, 8], // 4 dots
+                [0, 2, 4, 6, 8], // 5 dots
+                [0, 2, 3, 5, 6, 8] // 6 dots
+            ];
+
+            // Створення 9 пустих місць для потенційних точок
+            for (let i = 0; i < 9; i++) {
+                const dot = document.createElement('div');
+                if (dotPositions[number].includes(i)) {
+                    dot.classList.add('dot');
+                }
+                dice.appendChild(dot);
+            }
+            return dice;
+        }
+
+        // Генерація випадкових чисел для обох гравців
+        const player1Roll = Math.floor(Math.random() * 6) + 1;
+        const player2Roll = Math.floor(Math.random() * 6) + 1;
+
+        // Заміна кубиків на сторінці
+        const dice1 = document.getElementById('dice1');
+        const dice2 = document.getElementById('dice2');
+        dice1.replaceWith(createDots(player1Roll));
+        dice2.replaceWith(createDots(player2Roll));
+
+        // Визначення переможця
+        const result = document.getElementById("result");
+        if (player1Roll > player2Roll) {
+            result.textContent = "Гравець 1 виграв!";
+        } else if (player1Roll < player2Roll) {
+            result.textContent = "Гравець 2 виграв!";
+        } else {
+            result.textContent = "Нічия!";
+        }
+    </script>
+
+</body>
+</html>
