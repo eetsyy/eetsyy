@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хрестики-Нулики</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+        }
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 48px;
+            border: 2px solid black;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .cell.empty:hover {
+            background-color: lightgray;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 24px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Хрестики-Нулики</h1>
+    <div class="board">
+        <div class="cell empty" data-index="0"></div>
+        <div class="cell empty" data-index="1"></div>
+        <div class="cell empty" data-index="2"></div>
+        <div class="cell empty" data-index="3"></div>
+        <div class="cell empty" data-index="4"></div>
+        <div class="cell empty" data-index="5"></div>
+        <div class="cell empty" data-index="6"></div>
+        <div class="cell empty" data-index="7"></div>
+        <div class="cell empty" data-index="8"></div>
+    </div>
+    <div class="message" id="message"></div>
+    <script>
+        const cells = document.querySelectorAll('.cell');
+const message = document.getElementById('message');
+let board = ['', '', '', '', '', '', '', '', ''];
+let isGameOver = false;
+
+// Усі можливі виграшні комбінації
+const winningCombinations = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+];
+
+// Перевірка на перемогу
+function checkWinner() {
+    for (let combination of winningCombinations) {
+        const [a, b, c] = combination;
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+            return board[a];
+        }
+    }
+    return null;
+}
+
+// Хід комп'ютера
+function computerMove() {
+    let emptyCells = [];
+    cells.forEach((cell, index) => {
+        if (board[index] === '') {
+            emptyCells.push(index);
+        }
+    });
+
+    if (emptyCells.length > 0) {
+        const randomIndex = Math.floor(Math.random() * emptyCells.length);
+        const cellIndex = emptyCells[randomIndex];
+        board[cellIndex] = 'O';
+        cells[cellIndex].textContent = 'O';
+        cells[cellIndex].classList.remove('empty');
+        const winner = checkWinner();
+        if (winner) {
+            message.textContent = winner === 'X' ? 'You win!' : 'Computer wins!';
+            isGameOver = true;
+        }
+    }
+}
+
+// Обробник подій для кліків на порожні клітинки
+function handleCellClick(event) {
+    const cell = event.target;
+    const index = cell.getAttribute('data-index');
+
+    if (board[index] === '' && !isGameOver) {
+        board[index] = 'X';
+        cell.textContent = 'X';
+        cell.classList.remove('empty');
+
+        const winner = checkWinner();
+        if (winner) {
+            message.textContent = 'You win!';
+            isGameOver = true;
+            return;
+        }
+
+        // Якщо гра не завершилась, хід комп'ютера
+        computerMove();
+    }
+}
+
+// Призначаємо події кліку для кожної клітинки
+cells.forEach(cell => {
+    cell.addEventListener('click', handleCellClick);
+});
+    </script>
+</body>
+</html>
