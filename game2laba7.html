@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Sounds</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f8ff;
+}
+
+h1 {
+    font-size: 48px;
+    margin-top: 20px;
+    color: #ff6347;
+}
+
+.keys {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.key {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.key.active {
+    background-color: #ff6347;
+    color: white;
+}
+
+footer {
+    margin-top: 50px;
+    font-size: 14px;
+    color: #555;
+}
+    </style>
+</head>
+<body>
+
+    <h1>Sounds</h1>
+
+    <div class="keys">
+        <div class="key" data-sound="drum" data-key="A">
+            <p>A</p>
+        </div>
+        <div class="key" data-sound="guitar" data-key="S">
+            <p>S</p>
+        </div>
+        <div class="key" data-sound="piano" data-key="D">
+            <p>D</p>
+        </div>
+        <div class="key" data-sound="flute" data-key="F">
+            <p>F</p>
+        </div>
+        <div class="key" data-sound="violin" data-key="G">
+            <p>G</p>
+        </div>
+        <div class="key" data-sound="trumpet" data-key="H">
+            <p>H</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Made with ❤</p>
+    </footer>
+
+    <script>
+        // Звуки для кожного інструмента
+const sounds = {
+    drum: new Audio('sounds/malyiy-baraban-odinochnyiy-v-prostranstve-klassicheskiy.mp3'),
+    guitar: new Audio('sounds/gitara-akkord-korotkiy.mp3'),
+    piano: new Audio('sounds/pianino-odinochnyiy-nejnyiy.mp3'),
+    flute: new Audio('sounds/klassicheskiy-zvuk-fleytyi-42266.mp3'),
+    violin: new Audio('sounds/skripka-7.mp3'),
+    trumpet: new Audio('sounds/saksofon-odinochnyiy-nizkiy.mp3')
+};
+
+// Функція для відтворення звуку
+function playSound(soundKey) {
+    const sound = sounds[soundKey];
+    if (sound) {
+        sound.currentTime = 0; // Скидання звуку на початок
+        sound.play();
+    }
+}
+
+// Обробка натискання на клавішу на екрані
+function handleKeyClick(event) {
+    const key = event.currentTarget;
+    const soundKey = key.getAttribute('data-sound');
+    playSound(soundKey);
+    animateKey(key);
+}
+
+// Додавання ефекту при натисканні
+function animateKey(key) {
+    key.classList.add('active');
+    setTimeout(() => {
+        key.classList.remove('active');
+    }, 200);
+}
+
+// Обробка натискання клавіш на клавіатурі
+function handleKeyPress(event) {
+    const key = event.key.toUpperCase();
+    const keyElement = document.querySelector(`.key[data-key="${key}"]`);
+    if (keyElement) {
+        const soundKey = keyElement.getAttribute('data-sound');
+        playSound(soundKey);
+        animateKey(keyElement);
+    }
+}
+
+// Призначення подій для клавіш на екрані
+const keys = document.querySelectorAll('.key');
+keys.forEach(key => {
+    key.addEventListener('click', handleKeyClick);
+});
+
+// Обробка подій натискання на клавіатуру
+window.addEventListener('keydown', handleKeyPress);
+    </script>
+</body>
+</html>
