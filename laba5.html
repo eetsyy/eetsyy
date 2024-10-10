@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Суперкари</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8d7da;
+            width: 400px;
+            text-align: center;
+            margin-left: 550px;
+        }
+        .carousel-item active{
+            height: 200px;
+            width: 400px;
+        }
+        .carousel-item{
+            height: 200px;
+            width: 400px;
+        }
+        .carousel-inner img {
+            margin: 0 auto; /* Центрування зображень в каруселі */
+        }
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-top: 20px;
+            color: black;
+        }
+        .supercar-info {
+            
+            justify-content: center; /* Центрування контенту */
+            align-items: center; /* Центрування по вертикалі */
+        }
+        .btn-custom {
+            background-color: black;
+            color: white;
+            margin: 0 auto;
+        }
+       
+
+        /* Медіа-запити для телефонів */
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .supercar-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .supercar-info img {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .carousel-item img {
+                height: auto;
+            }
+
+            .carousel-inner {
+                height: 300px;
+            }
+
+            .carousel-item {
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Гіперкари</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Головна</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Про нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Контакти</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Карусель -->
+    <div id="supercarCarousel" class="carousel slide mt-3" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="images/завантаження (3).jpg" class="d-block w-100" alt="Суперкар 1">
+            </div>
+            <div class="carousel-item">
+                <img src="images/laferrari.jpg" class="d-block w-100" alt="Суперкар 2">
+            </div>
+            <div class="carousel-item">
+                <img src="images/Reuelto_Grigio Telesto_001.webp" class="d-block w-100" alt="Суперкар 3">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#supercarCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Попереднє</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#supercarCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Наступне</span>
+        </button>
+    </div>
+
+    <!-- Опис суперкарів -->
+    <section class="container mt-5">
+        <h2 class="section-title">Топ Гіперкарів</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Ferrari LaFerrari</h3>
+                <p>Ferrari LaFerrari — це гібридний гіперкар з двигуном V12, який є символом технологічної переваги Ferrari.</p>
+            </div>
+            <div class="col-md-6">
+                <img src="images/laferrari.jpg" class="img-fluid" alt="Ferrari LaFerrari">
+            </div>
+        </div>
+        <hr>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <img src="images/завантаження (3).jpg" class="img-fluid" alt="Bugatti Chiron">
+            </div>
+            <div class="col-md-6">
+                <h3>Bugatti Chiron</h3>
+                <p>Bugatti Chiron — це найшвидший автомобіль у світі, який встановлює нові стандарти швидкості та розкоші.</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <img src="images/Reuelto_Grigio Telesto_001.webp" class="img-fluid" alt="Bugatti Chiron">
+            </div>
+            <div class="col-md-6">
+                <h3>Lamborghini Revuelto</h3>
+                <p>Lamborghini Revuelto — це один з останніх суперкарів компанії Lamborghini, представлений як частина серії гібридних або електрифікованих моделей.
+
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="text-center mt-5 py-3 bg-light">
+        <p>&copy; 2024 Суперкари. Всі права захищені.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
